@@ -1,0 +1,25 @@
+{% comment %}
+  Renders an accordion item
+
+  Accepts:
+  - head {String}
+  - content {String}
+
+  Requires:
+  - accordion-item.css
+  - accordion-item.js
+{% endcomment %}
+
+{%- if head != blank and content != blank -%}
+  <accordion-item class="accordion-item">
+    <a href="#" class="accordion-item__head js-accordion-head">
+      {{- head | escape -}}
+    </a><!-- /.accordion-item__head -->
+
+    <div class="accordion-item__body">
+      <div class="accordion-item__body-inner">
+        {{- content -}}
+      </div><!-- /.accordion-item__body-inner -->
+    </div><!-- /.accordion-item__body -->
+  </accordion-item>
+{%- endif -%}
