@@ -1,0 +1,78 @@
+{%- if section.settings.text != blank -%}
+  <style>
+    .marquee-wrapper {
+      overflow: hidden;
+    }
+
+    .marquee-text {
+      font-size: 3.1rem;
+      display: flex;
+      width: fit-content;
+    }
+
+    .marquee-text span {
+      display: block;
+      width: 100%;
+      min-width: max-content;
+      padding-right: 0.25em;
+    }
+
+    @media (max-width: 750px) {
+      .marquee-text {
+        font-size: 5.5rem;
+      }
+    }
+  </style>
+
+<script src="{{- 'marquee-text.js' | asset_url -}}" defer></script>
+
+<div class="marquee-wrapper">
+  <marquee-text class="marquee-text" data-speed="{{- section.settings.speed | default: 1 -}}" {% if
+    section.settings.pause_on_hover %} data-pause-on-hover {% endif %}>
+    {%- for i in (1..20) -%}
+    <span>{{- section.settings.text }}</span>
+    {%- endfor -%}
+  </marquee-text>
+</div><!-- /.marquee-wrapper -->
+{%- endif -%}
+
+{% schema %}
+{
+"name": "Marquee Text",
+"tag": "section",
+"settings": [
+{
+"type": "text",
+"id": "text",
+"label": "Text"
+},
+{
+"type": "checkbox",
+"id": "pause_on_hover",
+"label": "Pause On Hover",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "enable_direction_switch",
+"label": "Enable direction switch",
+"default": false
+},
+{
+"type": "range",
+"id": "speed",
+"min": 1,
+"max": 3,
+"step": 1,
+"label": "Scroll Speed",
+"default": 1
+}
+],
+"presets": [
+{
+"name": "Marquee Text",
+"settings": {}
+}
+]
+}
+{% endschema %}
