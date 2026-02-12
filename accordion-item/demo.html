@@ -13,15 +13,32 @@
   <h1>Accordion Item</h1>
 
   <accordion-item class="accordion-item">
-    <button type="button" class="accordion-item__head js-accordion-head">
-      Accordion Title
-    </button><!-- /.accordion-item__head -->
+   <button
+      type="button"
+      class="accordion-item__head"
+      id="Button-Title"
+      aria-expanded="false"
+      aria-controls="Title"
+      js-toggle
+    >
+      Title
+    </button>
+    <!-- /.accordion-item__head -->
 
-    <div class="accordion-item__body">
+    <div
+      class="accordion-item__body"
+      id="Title"
+      aria-labelledby="Button-Title"
+      aria-hidden="true"
+      role="region"
+      js-toggle-target
+    >
       <div class="accordion-item__body-inner">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam harum rem fuga perferendis, fugiat ipsum quia fugit quis at dolorem odio voluptatum. Temporibus eius qui tenetur esse molestias sint excepturi.
-      </div><!-- /.accordion-item__body-inner -->
-    </div><!-- /.accordion-item__body -->
+        Accordion Content
+      </div>
+      <!-- /.accordion-item__body-inner -->
+    </div>
+    <!-- /.accordion-item__body -->
   </accordion-item>
 
   <script src="/accordion-item/accordion-item.js"></script>
