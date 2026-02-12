@@ -1,25 +1,51 @@
-{% comment %}
+{% doc %}
   Renders an accordion item
 
-  Accepts:
-  - head {String}
-  - content {String}
+  @param title - {String}
+  @param content - {String}
+  @param is_rte - {Boolean} - Whether the content is rich text or not. Default: false
+  @param id - {String} - The ID of the accordion body. Optional.
 
-  Requires:
-  - accordion-item.css
-  - accordion-item.js
-{% endcomment %}
+  @example
+  {% render 'accordion-item', title: 'Accordion Item Title', content: '<p>Accordion Item Content</p>', is_rte: true %}
+{% enddoc %}
 
-{%- if head != blank and content != blank -%}
+{%- liquid
+  assign title_handle = title | handle
+  assign id = id | default: title_handle
+-%}
+
+{%- if title != blank and content != blank -%}
   <accordion-item class="accordion-item">
-    <a href="#" class="accordion-item__head js-accordion-head">
-      {{- head | escape -}}
-    </a><!-- /.accordion-item__head -->
+    <button
+      type="button"
+      class="accordion-item__head"
+      id="Button-{{ id }}"
+      aria-expanded="false"
+      aria-controls="{{ id }}"
+      js-toggle
+    >
+      {{- title | escape -}}
+    </button>
+    <!-- /.accordion-item__head -->
 
-    <div class="accordion-item__body">
-      <div class="accordion-item__body-inner">
-        {{- content -}}
-      </div><!-- /.accordion-item__body-inner -->
-    </div><!-- /.accordion-item__body -->
+    <div
+      class="accordion-item__body"
+      id="{{ id }}"
+      aria-labelledby="Button-{{ id }}"
+      aria-hidden="true"
+      role="region"
+      js-toggle-target
+    >
+      <div class="accordion-item__body-inner {%- if is_rte %} rte{%- endif -%}">
+        {%- if is_rte -%}
+          {{- content -}}
+        {%- else -%}
+          {{- content | escape -}}
+        {%- endif -%}
+      </div>
+      <!-- /.accordion-item__body-inner -->
+    </div>
+    <!-- /.accordion-item__body -->
   </accordion-item>
 {%- endif -%}

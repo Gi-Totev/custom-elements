@@ -4,19 +4,21 @@ if (!customElements.get('accordion-item')) {
       super();
     }
 
-    /**
-     * @param {MouseEvent} event - Click event
-     */
-    toggle(event) {
+    toggle = (event) => {
       event.preventDefault();
+
       this.classList.toggle('is-active');
+
+      const isActive = this.classList.contains('is-active');
+      this.button.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      this.target.setAttribute('aria-hidden', isActive ? 'false' : 'true');
     }
 
     connectedCallback() {
-      /** @type {HTMLElement | null} */
-      this.head = this.querySelector('.js-accordion-head');
+      this.button = this.querySelector('[js-toggle]');
+      this.target = this.querySelector('[js-toggle-target]');
 
-      if(this.head) this.head.addEventListener('click', this.toggle.bind(this));
+      if(this.button) this.button.addEventListener('click', this.toggle);
     }
   }
   customElements.define('accordion-item', AccordionItem);
