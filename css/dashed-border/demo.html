@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashed Border</title>
+  <link rel="stylesheet" href="/css/dashed-border/style.css">
+</head>
+<body>
+  <div class="elements">
+    <div class="border-dashed-circle"></div>
+
+    <div class="border-dashed-circle border-dashed-circle--large"></div>
+  </div><!-- /.elements -->
+
+  <div class="control">
+    <label for="thickness">
+      Thickness (px):
+      <input type="range" id="thickness" name="thickness" min="1" max="10" value="2">
+    </label>
+
+    <label for="dashes">
+      Dashes:
+      <input type="range" id="dashes" name="dashes" min="4" max="16" value="8">
+    </label>
+  </div><!-- /.control -->
+
+  <script src="./main.js" defer></script>
+</body>
+</html>

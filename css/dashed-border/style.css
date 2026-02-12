@@ -1,0 +1,73 @@
+.elements {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.control {
+  position: fixed;
+  inset: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-block: 20px;
+}
+
+.control label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.control input {
+  accent-color: currentColor;
+}
+
+.border-dashed-circle {
+  /* --thickness: 2px;
+  --dashes: 8; */
+  --dash-angle: calc(360deg / var(--dashes) * 0.6);
+  --gap-angle: calc(360deg / var(--dashes) * 0.4);
+
+  width: 100px;
+  aspect-ratio: 1;
+  padding: var(--thickness);
+  border-radius: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+.border-dashed-circle > :is(img, svg) {
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+.border-dashed-circle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    currentColor 0deg var(--dash-angle),
+    transparent var(--dash-angle) calc(var(--dash-angle) + var(--gap-angle))
+  );
+}
+
+.border-dashed-circle::after {
+  content: "";
+  background: #fff;
+  border-radius: 50%;
+  margin: var(--thickness);
+  position: absolute;
+  inset: 0;
+}
+
+.border-dashed-circle--large {
+  width: 250px;
+  margin-top: 30px;
+}
