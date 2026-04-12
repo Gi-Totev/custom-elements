@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API"
+      >Invoker Commands API</a
+    >
+
+    <button commandfor="mydialog" command="show-modal">
+      Show modal dialog
+    </button>
+
+    <dialog id="mydialog">
+      <button commandfor="mydialog" command="close">Close</button>
+      Dialog Content
+    </dialog>
+  </body>
+</html>
