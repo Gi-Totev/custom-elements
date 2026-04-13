@@ -28,25 +28,37 @@
       pariatur!
     </p>
 
-    <p id="lastp">
+    <custom-p id="secondlastp">
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, non
       pariatur!
-    </p>
+    </custom-p>
 
-    <button commandfor="lastp" command="--clear-text">
+    <custom-p id="lastp">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum, non
+      pariatur!
+    </custom-p>
+
+    <button commandfor="lastp" command="--clear-Text">
       Clear last paragraph text
     </button>
 
     <script>
-      // ❌
-      document.addEventListener("command", (event) => {
-        console.log(event);
-      });
+      if (!customElements.get('custom-p')) {
+        class CustomP extends HTMLElement {
+          constructor() {
+            super();
+          }
 
-      // ✅
-      lastp.addEventListener("command", (event) => {
-        console.log(event);
-      });
+          clearText() {
+            this.textContent = '';
+          }
+
+          connectedCallback() {
+            this.addEventListener('command', this.clearText);
+          }
+        }
+        customElements.define('custom-p', CustomP);
+      }
     </script>
   </body>
 </html>
